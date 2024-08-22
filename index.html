@@ -3,25 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>静态博客</title>
+    <title>精美静态博客</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
-        <h1>我的静态博客</h1>
+        <h1>🌟 我的精美静态博客 🌟</h1>
         <p>分享知识与生活的点滴</p>
     </header>
 
     <main>
         <section id="posts">
-            <!-- 文章列表将通过JavaScript插入 -->
+            <article class="post">
+                <h2>文章1</h2>
+                <button class="read-more" onclick="loadArticle('1.txt', 'article1')">阅读更多</button>
+                <div id="article1" class="article-content"></div>
+            </article>
+
+            <article class="post">
+                <h2>文章2</h2>
+                <button class="read-more" onclick="loadArticle('2.txt', 'article2')">阅读更多</button>
+                <div id="article2" class="article-content"></div>
+            </article>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2024 我的静态博客 | 由纯HTML制作</p>
+        <p>&copy; 2024 我的精美静态博客 | 由纯HTML制作</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        function loadArticle(file, containerId) {
+            fetch(file)
+                .then(response => response.text())
+                .then(data => {
+                    const contentContainer = document.getElementById(containerId);
+                    contentContainer.innerHTML = '<p>' + data.replace(/\n/g, '<br>') + '</p>';
+                    contentContainer.style.display = 'block';
+                    contentContainer.style.animation = 'fadeIn 0.5s ease-in-out';
+                })
+                .catch(error => console.error('Error loading article:', error));
+        }
+    </script>
 </body>
 </html>
