@@ -91,13 +91,20 @@
 // 模拟从服务器获取文件列表
 const files = [
     '1.txt',
-    '2.txt',
-    '3.docs'
+    '2.docx',
+    '3.docs',
+    '北海之旅.txt'
 ];
+
+// 过滤只保留 .txt 和 .docx 文件
+const supportedExtensions = ['.txt', '.docx'];
+const filteredFiles = files.filter(file => 
+    supportedExtensions.includes(file.slice(-4))
+);
 
 // 动态加载文件列表
 const fileList = document.getElementById('fileList');
-files.forEach(file => {
+filteredFiles.forEach(file => {
     const listItem = document.createElement('li');
     listItem.textContent = file.replace(/\.[^/.]+$/, ""); // 去除文件扩展名
     listItem.addEventListener('click', () => loadFileContent(file));
