@@ -17,13 +17,13 @@
         <section id="posts">
             <article class="post">
                 <h2>文章1</h2>
-                <button class="read-more" onclick="loadArticle('1.txt', 'article1')">阅读更多</button>
+                <button class="read-more" onclick="toggleArticle('1.txt', 'article1')">阅读更多</button>
                 <div id="article1" class="article-content"></div>
             </article>
 
             <article class="post">
                 <h2>文章2</h2>
-                <button class="read-more" onclick="loadArticle('2.txt', 'article2')">阅读更多</button>
+                <button class="read-more" onclick="toggleArticle('2.txt', 'article2')">阅读更多</button>
                 <div id="article2" class="article-content"></div>
             </article>
         </section>
@@ -34,18 +34,34 @@
     </footer>
 
     <script>
-        function loadArticle(file, containerId) {
-            const title = file.split('/').pop().split('.').slice(0, -1).join('.');
+        // 保存文章内容的状态
+        const articleStates = {};
 
-            fetch(file)
-                .then(response => response.text())
-                .then(data => {
-                    const contentContainer = document.getElementById(containerId);
-                    contentContainer.innerHTML = '<h2>' + title + '</h2><p>' + data.replace(/\n/g, '<br>') + '</p>';
-                    contentContainer.style.display = 'block';
-                    contentContainer.style.animation = 'fadeIn 0.5s ease-in-out';
-                })
-                .catch(error => console.error('Error loading article:', error));
+        function toggleArticle(file, containerId) {
+            const contentContainer = document.getElementById(containerId);
+            const button = contentContainer.previousElementSibling;
+
+            // 检查是否已经加载了内容
+            if (!articleStates[containerId]) {
+                fetch(file)
+                    .then(response => response.text())
+                    .then(data => {
+                        const title = file.split('/').pop().split('.').slice(0, -1).join('.');
+                        contentContainer.innerHTML = '<h2>' + title + '</h2><p>' + data.replace(/\n/g, '<br>') + '</p>';
+                        articleStates[containerId] = 'loaded';
+                    })
+                    .catch(error => console.error('Error loading article:', error));
+            }
+
+            // 切换显示状态
+            if (contentContainer.style.display === 'block') {
+                contentContainer.style.display = 'none';
+                button.textContent = '阅读更多';
+            } else {
+                contentContainer.style.display = 'block';
+                contentContainer.style.animation = 'fadeIn 0.5s ease-in-out';
+                button.textContent = '收起';
+            }
         }
     </script>
 </body>
