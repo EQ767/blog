@@ -35,11 +35,13 @@
 
     <script>
         function loadArticle(file, containerId) {
+            const title = file.split('/').pop().split('.').slice(0, -1).join('.');
+
             fetch(file)
                 .then(response => response.text())
                 .then(data => {
                     const contentContainer = document.getElementById(containerId);
-                    contentContainer.innerHTML = '<p>' + data.replace(/\n/g, '<br>') + '</p>';
+                    contentContainer.innerHTML = '<h2>' + title + '</h2><p>' + data.replace(/\n/g, '<br>') + '</p>';
                     contentContainer.style.display = 'block';
                     contentContainer.style.animation = 'fadeIn 0.5s ease-in-out';
                 })
