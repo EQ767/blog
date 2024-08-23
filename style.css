@@ -5,6 +5,7 @@ body {
     color: #333;
     margin: 0;
     padding: 0;
+    overflow-x: hidden; /* 防止水平滚动 */
 }
 
 /* 头部样式 */
@@ -41,19 +42,6 @@ main {
     }
 }
 
-/* 卡片样式 */
-article {
-    background: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease;
-}
-
-article:hover {
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-}
-
 /* 文件列表和按钮样式 */
 #file-list a {
     display: inline-block;
@@ -73,12 +61,44 @@ article:hover {
 }
 
 /* 模态窗样式 */
-.modal-content {
-    background: #fff;
-    padding: 20px;
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    width: 80%;
+    max-width: 800px;
+    background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    overflow-y: auto;
+    max-height: 90vh;
+}
+
+.modal-content {
+    padding: 20px;
     animation: fadeIn 0.5s ease-in-out;
+}
+
+/* 限制图片大小 */
+.modal img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+/* 背景遮罩 */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: none;
 }
 
 /* 动态效果 */
