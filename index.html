@@ -3,42 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eric's Blog</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Eric Blog</title>
+    <link rel="stylesheet" href="styles\CS2\styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div class="overlay"></div>
     <header>
-        <h1>Welcome to My Blog</h1>
-        <p>By Eric</p>
-        <p>由于服务器位于国外，有些页面比较大，加载可能会很慢。请耐心等待！</p>
-        <div style="margin-top: 20px; text-align: center;">
-            <a href="https://eq767.github.io/Star.html" target="_blank" style="font-size: 1.2rem; color: #007bb5; text-decoration: none; border-bottom: 1px solid #007bb5;">
-                About me
-            </a>
+        <div class="container">
+            <img src="image/head.jpg" alt="Eric's Avatar" class="avatar">
+            <h1 class="blog-title">Eric Blog</h1>
+            <p class="tagline">A place to share ideas, experiences, and inspirations.</p>
         </div>
     </header>
-
-    <main>
-        <section id="file-list">
-            <h2>Articles</h2>
-            <ul>
-                <li><a href="#" onclick="loadFileContent('https://eq767.github.io/blog/北海之旅.docx')">北海之旅</a></li>
-                <li><a href="#" onclick="loadFileContent('https://eq767.github.io/blog/Blog.txt')">Blog</a></li>
-                <li><a href="#" onclick="loadFileContent('https://eq767.github.io/blog/Test.docx')">Test</a></li>
-            </ul>
-        </section>
-    </main>
-
-    <div id="modal" class="modal">
-        <div id="modal-content" class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <div id="file-content"></div>
+    <section class="main-content">
+        <div class="container">
+            <div class="content-box">
+                <h2>欢迎来到我的博客</h2>
+                <p>这是我分享我的想法、经验和灵感的地方。和我一起踏上这段旅程，一起探索各种主题。</p>
+                <a href="list.html" class="button">Read More</a>
+            </div>
         </div>
-    </div>
-
-    <div id="modal-overlay" class="modal-overlay"></div>
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.2/mammoth.browser.min.js"></script>
-    <script src="script.js"></script>
+    </section>
 </body>
 </html>
